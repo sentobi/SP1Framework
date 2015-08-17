@@ -59,7 +59,7 @@ void gameLoop()
     Sequence seq = Menu;
     displayMenu();
 
-    while (seq != Exit)
+    while (seq != Exit && seq != Play)
     {
         userInput(seq);
 
@@ -75,6 +75,7 @@ void gameLoop()
 void userInput (Sequence &s) //If s is modified, seq is modified as well
 {
     int input;
+    cout << endl;
     cout << "Enter your choice : ";
     cin >> input;
     cout << endl;
@@ -85,6 +86,7 @@ void userInput (Sequence &s) //If s is modified, seq is modified as well
 void displayMenu()
 {
         cout << "Menu" << endl;
+        cout << endl;
         for (Sequence s = Play; s != MAX_SEQUENCE; s = static_cast<Sequence>(s+1))
         {
          cout << "Menu Option " << s << " " << menu[s-1] << endl;
