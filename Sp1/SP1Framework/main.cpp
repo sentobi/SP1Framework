@@ -2,6 +2,7 @@
 
 #include "Framework\timer.h"
 #include "game.h"
+#include "menu.h"
 #include <iostream>
 
 using std::cin;
@@ -13,35 +14,6 @@ StopWatch g_timer;            // Timer function to keep track of time and the fr
 bool g_quitGame = false;      // Set to true if you want to quit the game
 const unsigned char FPS = 5; // FPS of this game
 const unsigned int frameTime = 1000 / FPS; // time for each frame
-
-enum Sequence 
-{
-    Menu,
-    Play,             //1
-    Instructions,     //2
-    HighScore,        //3
-    Options,          //4
-    Exit,             //5
-    MAX_SEQUENCE      //Last (6)
-};
-const char* menu[] = 
-{
-   "Play",
-   "Instructions",
-   "High Score",
-   "Options",
-   "Exit"
-};
-
-void gameLoop();
-void displayMenu();
-void userInput (Sequence &s);
-void displayGame();
-void displayInstructions();
-void displayOptions();
-void displayHighscore();
-void displayExit();
-int input;
 
 // TODO:
 // Bug in waitUnitil. it waits for the time from getElapsedTime to waitUntil, but should be insignificant.
@@ -104,10 +76,19 @@ void displayHighscore()
 
 }
 
-void displayOptions()
-{
-
+void displayOptions() {
+	cout << "Options:" << endl;
+	for (SequenceOPT s = Sound; s != MAX_SEQUENCE; s = static_cast<SequenceOPT>(s+1)) 
+	{ 
+		cout << "Option " << s << " " << option[static_cast<int>(s)-1] << endl;
+	}
 }
+
+void displaySound(){
+	cout << "Adjust your sound here:" << endl;
+}
+
+
 
 void displayExit()
 {
